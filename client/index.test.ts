@@ -15,7 +15,7 @@ test("one transfer", () => {
   // loading our contract to the local svm
   svm.addProgramFromFile(
     contractPubKey,
-    "../target/deploy/w_36_cpi_in_solana.so"
+    "./double.so"
   );
   const payer = new Keypair();
   svm.airdrop(payer.publicKey, BigInt(LAMPORTS_PER_SOL));
@@ -54,7 +54,7 @@ test("one transfer", () => {
 
     const tx2 = new Transaction();
     tx2.recentBlockhash = blockhash;
-    tx.feePayer = payer.publicKey;
+    tx2.feePayer = payer.publicKey;
     tx2.add(ix2);
     tx2.sign(payer);
     svm.sendTransaction(tx2);
